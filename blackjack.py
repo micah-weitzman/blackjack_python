@@ -87,6 +87,7 @@ print "Dealer now has", dValue
 
 if dValue > 21:
 	print "Dealer went bust, now you win!"
+	sys.exit()
 
 elif dValue == hValue:
 	print "You tied with the dealer"
