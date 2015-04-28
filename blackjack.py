@@ -1,12 +1,17 @@
 import random
 import sys
 
+version = "0.0.1"
+
 deck=[]
 for rank in ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]:
 	for suit in ["H", "D", "C", "S"]:
 		deck.append("%s of %s" % (rank, suit))
 
-print "Lets play a game"
+print """Hello and Welcome to version %s of PyJack, by Micah Weitzman. 
+Feel free to fork this project on GitHub!
+Enjoy!""" % (version)
+
 
 def handVal(hand):
 	value=0
@@ -38,7 +43,7 @@ hand = [player_card_first, player_card_second]
 hValue = handVal(hand)
 
 print "Dealer gives you a " + player_card_first + " and " + player_card_second
-print hValue
+print "Your hand is now equal to " + str(hValue)
 
 dealer_card_first = random.choice(deck)
 deck.remove(dealer_card_first)
@@ -54,7 +59,7 @@ print "Dealer get",  dealer_card_first, "and another card"
 
 
 while hValue < 21:
-	print "You have 2 options"
+	print "You now have 2 options"
 
 	decide_one = raw_input ("Hit or stay? ")
 
@@ -63,18 +68,18 @@ while hValue < 21:
 		deck.remove(player_card_hit)
 		print "Dealer gives you a " + player_card_hit
 		hand.append(player_card_hit) 
-		print "You now have", hand
+		print "You now have "
+		for card in hand:
+			print card
 		hValue = handVal(hand)
-		print hValue
+		print "Your hand is equal to " + str(hValue)
 	elif decide_one == "stay":
-		print "You chose to stay with", hValue
+		print "You chose to stay with " + str(hValue)
 		break
 
 if hValue > 21:
 	print "You went bust. Dealer wins :("
 	sys.exit()
-
-print "Dealer", dValue
 
 while dValue < 17:
 	dealer_card_hit = random.choice(deck)
@@ -83,7 +88,7 @@ while dValue < 17:
 	dhand.append(dealer_card_hit)
 	dValue = handVal(dhand)
 
-print "Dealer now has", dValue
+print "Dealer has", str(dValue)
 
 if dValue > 21:
 	print "Dealer went bust, now you win!"
